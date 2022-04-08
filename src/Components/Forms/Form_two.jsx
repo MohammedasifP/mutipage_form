@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { RegistartionContext } from "../ResgitrationContext/RegitrationContext"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export const Formtwo=()=>{
 const {navigate}=useNavigate()    
@@ -17,9 +18,20 @@ useEffect(()=>{
     const {id,value}=e.target;
     setFinaldata({...finaldata,[id]:value})
  }
+
+  const senddata=()=>{
+       fetch(" http://localhost:3000/Users",{
+           method:"POST",
+           body:JSON.stringify(finaldata),
+           headers:{"content-type":"application/json"}
+       })
+
+       alert("product added")
+  }
 return(
     <div>
-      <div>
+            <Link to="/">Go To Home</Link>
+              <div>
                  <label>state of residence:</label>
                   <input type="text" placeholder="Enter your state of residence" id="state" onChange={handlechange} /><br/><br/>
 
@@ -30,7 +42,7 @@ return(
                   <input type="text" placeholder="enter pincode" id="pin" onChange={handlechange}/> <br/>
 
                   <button disabled={finaldata.name==undefined || finaldata.age==undefined || finaldata.dob==undefined
-                  || finaldata.state==undefined || finaldata.address==undefined || finaldata.pin==undefined } >submit</button>
+                  || finaldata.state==undefined || finaldata.address==undefined || finaldata.pin==undefined } onClick={senddata} >submit</button>
       </div>
     </div>
 )

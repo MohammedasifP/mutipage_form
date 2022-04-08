@@ -14,7 +14,6 @@ ReactDOM.render(
      
     <BrowserRouter>
     <RegistartionContextProvider><App/></RegistartionContextProvider>
-      
     </BrowserRouter>  
     
   </React.StrictMode>
